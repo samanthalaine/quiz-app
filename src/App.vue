@@ -63,32 +63,57 @@ const nextQuestion = () => {
 <template>
   <main>
     <h1 class="text-blue-500">The Quiz</h1>
-    <section class="quiz">
+    <section v-if="!quizCompleted">
       <div>
         <span>{{ getCurrentQuestion.question }}</span>
         <span>Score{{ score }}/{{ questions.length }}</span>
         <div>
-          <label 
-					v-for="(option, index) in getCurrentQuestion.options" 
-					:for="'option' + index" 
-          :key="index"
-					:class="`option ${
-						getCurrentQuestion.selected == index 
-							? index == getCurrentQuestion.answer 
-								? 'correct' 
-								: 'wrong'
-							: ''
-					} ${
-						getCurrentQuestion.selected != null &&
-						index != getCurrentQuestion.selected
-							? 'disabled'
-							: ''
-					}`">
-            <input type="radio" :name="getCurrentQuestion.index" :value="index"> 
+          <label
+            v-for="(option, index) in getCurrentQuestion.options"
+            :for="'option' + index"
+            :key="index"
+            :class="`option ${
+              getCurrentQuestion.selected == index
+                ? index == getCurrentQuestion.answer
+                  ? 'correct'
+                  : 'wrong'
+                : ''
+            } ${
+              getCurrentQuestion.selected != null &&
+              index != getCurrentQuestion.selected
+                ? 'disabled'
+                : ''
+            }`"
+          >
+            <input
+              type="radio"
+              :id="'option' + index"
+              :name="getCurrentQuestion.index"
+              :value="index"
+              v-model="getCurrentQuestion.selected"
+              :disabled="getCurrentQuestion.selected"
+              @change="setAnswer"
+            />
+            <span>{{ option }}</span>
           </label>
         </div>
       </div>
+      <button 
+				@click="nextQuestion" 
+				:disabled="!getCurrentQuestion.selected">
+				{{ 
+					getCurrentQuestion.index == questions.length - 1 
+						? 'Finish' 
+						: getCurrentQuestion.selected == null
+							? 'Select an option'
+							: 'Next question'
+				}}
+			</button>
     </section>
+    <section v-else>
+			<h2>You have finished the quiz!</h2>
+			<p>Your score is {{ score }}/{{ questions.length }}</p>
+		</section>
   </main>
 </template>
 
