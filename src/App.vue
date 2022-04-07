@@ -71,6 +71,7 @@ const nextQuestion = () => {
           <label 
 					v-for="(option, index) in getCurrentQuestion.options" 
 					:for="'option' + index" 
+          :key="index"
 					:class="`option ${
 						getCurrentQuestion.selected == index 
 							? index == getCurrentQuestion.answer 
