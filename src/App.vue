@@ -2,6 +2,7 @@
 import { ref, computed } from "vue";
 
 const questions = ref([
+
   {
     question: "Which of the following lets you create a variable?",
     answer: 3,
@@ -24,7 +25,42 @@ const questions = ref([
     options: ["toUppperCase()", "toCapital()", "toLocaleStringUpperCase()"],
     selected: null,
   },
+
 ]);
+
+const quizCompleted = ref(false)
+const currentQuestion = ref(0)
+
+const score = computed(()=>{
+  let value = 0
+  questions.value.map(quest => {
+    if (quest.selected === quest.answer){
+      value++
+    }
+  })
+  return value
+})
+
+const getCurrentQuestion = computed(()=>{
+  let question = questions.value[currentQuestion.value]
+  question.index = currentQuestion.value
+  return question
+})
+
+const setAnswer = e =>{
+  questions.value[currentQuestion.value].selected = e.target.value
+  e.target.value = null
+}
+
+const nextQuestion = () => {
+	if (currentQuestion.value < questions.value.length - 1) {
+		currentQuestion.value++
+		return
+	}
+	
+	quizCompleted.value = true
+}
+
 </script>
 
 <template>
