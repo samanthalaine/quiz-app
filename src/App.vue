@@ -65,8 +65,8 @@ const nextQuestion = () => {
     <h1 class="text-3xl font-semibold text-blue-500">JavaScript Quiz</h1>
     <section v-if="!quizCompleted">
       <div>
-        <span>{{ getCurrentQuestion.question }}</span>
-        <span>Score{{ score }}/{{ questions.length }}</span>
+        <span class="mb-2 text-lg font-bold text-gray-700">{{ getCurrentQuestion.question }}</span>
+        <span class="mb-2 text-lg font-bold text-purple-800">Score{{ score }}/{{ questions.length }}</span>
         <div class="form-check">
           <label
             v-for="(option, index) in getCurrentQuestion.options"
@@ -114,7 +114,7 @@ const nextQuestion = () => {
 			</button>
     </section>
     <section v-else>
-			<h2 class="mb-2 text-sm font-bold text-gray-700 ">You have finished the quiz!</h2>
+			<h2 class="mb-2 text-sm font-bold text-gray-700">You have finished the quiz!</h2>
 			<p class="mb-2 text-sm font-bold text-gray-700">Your score is {{ score }}/{{ questions.length }}</p>
 		</section>
   </main>
