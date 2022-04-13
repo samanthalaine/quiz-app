@@ -114,8 +114,8 @@ const nextQuestion = () => {
 			</button>
     </section>
     <section v-else>
-			<h2>You have finished the quiz!</h2>
-			<p>Your score is {{ score }}/{{ questions.length }}</p>
+			<h2 class="mb-2 text-sm font-bold text-gray-700 ">You have finished the quiz!</h2>
+			<p class="mb-2 text-sm font-bold text-gray-700">Your score is {{ score }}/{{ questions.length }}</p>
 		</section>
   </main>
 </template>
