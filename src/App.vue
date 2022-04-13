@@ -61,17 +61,18 @@ const nextQuestion = () => {
 </script>
 
 <template>
-  <main>
+  <main class="flex justify-center">
     <h1 class="text-blue-500">The Quiz</h1>
     <section v-if="!quizCompleted">
       <div>
         <span>{{ getCurrentQuestion.question }}</span>
         <span>Score{{ score }}/{{ questions.length }}</span>
-        <div>
+        <div class="form-check">
           <label
             v-for="(option, index) in getCurrentQuestion.options"
             :for="'option' + index"
             :key="index"
+            class="inline-block text-gray-800 form-check-label"
             :class="`option ${
               getCurrentQuestion.selected == index
                 ? index == getCurrentQuestion.answer
@@ -99,6 +100,7 @@ const nextQuestion = () => {
         </div>
       </div>
       <button 
+        class="px-4 py-2 font-bold text-white bg-blue-500 rounded shadow hover:bg-blue-400 focus:shadow-outline focus:outline-none"
 				@click="nextQuestion" 
 				:disabled="!getCurrentQuestion.selected">
 				{{ 
