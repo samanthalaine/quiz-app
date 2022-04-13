@@ -62,7 +62,7 @@ const nextQuestion = () => {
 
 <template>
   <main class="flex justify-center">
-    <h1 class="text-blue-500">The Quiz</h1>
+    <h1 class="text-3xl font-semibold text-blue-500">JavaScript Quiz</h1>
     <section v-if="!quizCompleted">
       <div>
         <span>{{ getCurrentQuestion.question }}</span>
@@ -87,6 +87,7 @@ const nextQuestion = () => {
             }`"
           >
             <input
+            class="form-radio"
               type="radio"
               :id="'option' + index"
               :name="getCurrentQuestion.index"
